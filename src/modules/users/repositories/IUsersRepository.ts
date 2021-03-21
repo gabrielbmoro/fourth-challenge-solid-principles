@@ -13,4 +13,4 @@ interface IUsersRepository {
   list(): User[];
 }
 
-export { IUsersRepository, ICreateUserDTO };
+export { IUsersRepository };
