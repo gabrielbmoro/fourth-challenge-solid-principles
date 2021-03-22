@@ -1,0 +1,75 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Seans-TypeScript-NodeJS-Fourth Challenge-Ignite-REST-API",
+    "description": "This is the fourth challenge",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3333",
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "users": {
+      "get": {
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user_id",
+            "type": "string"
+          }
+        ],
+        "summary": "Returns a list of users",
+        "description": "To list the users you should pass a valid user id.",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "example": {
+          "id": "8138b953-5d93-4980-9b5e-26e6dde6bef3",
+          "name": "Gabriel Moro",
+          "email": "gabrielbronzattimoro.es@gmail.com",
+          "admin": true,
+          "created_at": "Mon Mar 22 2021 14:10:00 GMT-03",
+          "updated_at": "Mon Mar 22 2021 14:10:00 GMT-03"
+        },
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "admin": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
