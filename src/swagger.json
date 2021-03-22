@@ -15,16 +15,47 @@
   "produces": ["application/json"],
   "paths": {
     "users": {
+      "patch": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "summary": "Turn the user on admin",
+        "description": "Update the user to be an admin.",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "500": {
+            "description": "Internal Error",
+            "schema":{
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
       "get": {
         "parameters": [
           {
             "in": "header",
             "name": "user_id",
             "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "type": "string"
           }
         ],
-        "summary": "Returns a list of users",
-        "description": "To list the users you should pass a valid user id.",
+        "summary": "List of users",
+        "description": "To list the users you should pass a user's admin identifier.",
         "responses": {
           "200": {
             "description": "Ok",
@@ -36,6 +67,12 @@
             "description": "The user doesn't exist if the id is invalid, or the user should be an admin to do this action.",
             "schema": {
               "$ref": "#definitions/Error"
+            }
+          },
+          "500": {
+            "description": "Internal Error",
+            "schema":{
+              "$ref": "#/definitions/Error"
             }
           }
         }
@@ -54,6 +91,37 @@
         }
       }
     },
+    "User": {
+      "type": "object",
+      "example": {
+        "id": "8138b953-5d93-4980-9b5e-26e6dde6bef3",
+        "name": "Gabriel Moro",
+        "email": "gabrielbronzattimoro.es@gmail.com",
+        "admin": true,
+        "created_at": "Mon Mar 22 2021 14:10:00 GMT-03",
+        "updated_at": "Mon Mar 22 2021 14:10:00 GMT-03"
+      },
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "admin": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
     "Users": {
       "type": "array",
       "items": {
@@ -62,7 +130,7 @@
           "id": "8138b953-5d93-4980-9b5e-26e6dde6bef3",
           "name": "Gabriel Moro",
           "email": "gabrielbronzattimoro.es@gmail.com",
-          "admin": true,
+          "admin": false,
           "created_at": "Mon Mar 22 2021 14:10:00 GMT-03",
           "updated_at": "Mon Mar 22 2021 14:10:00 GMT-03"
         },
