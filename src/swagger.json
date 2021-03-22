@@ -31,12 +31,29 @@
             "schema": {
               "$ref": "#/definitions/Users"
             }
+          },
+          "400": {
+            "description": "The user doesn't exist if the id is invalid, or the user should be an admin to do this action.",
+            "schema": {
+              "$ref": "#definitions/Error"
+            }
           }
         }
       }
     }
   },
   "definitions": {
+    "Error": {
+      "type": "object",
+      "example": {
+        "error": "message"
+      },
+      "properties": {
+        "error": {
+          "type": "string"
+        }
+      }
+    },
     "Users": {
       "type": "array",
       "items": {
