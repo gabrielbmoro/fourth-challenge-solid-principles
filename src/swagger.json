@@ -15,6 +15,39 @@
   "produces": ["application/json"],
   "paths": {
     "users": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "schema": {
+              "type": "object",
+              "required": ["name", "email"],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "summary": "Create a user",
+        "description": "Create a new simple user",
+        "responses": {
+          "201": {
+            "description": "Ok"
+          },
+          "500": {
+            "description": "Internal Error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
       "patch": {
         "parameters": [
           {
@@ -35,7 +68,7 @@
           },
           "500": {
             "description": "Internal Error",
-            "schema":{
+            "schema": {
               "$ref": "#/definitions/Error"
             }
           }
@@ -71,7 +104,7 @@
           },
           "500": {
             "description": "Internal Error",
-            "schema":{
+            "schema": {
               "$ref": "#/definitions/Error"
             }
           }
